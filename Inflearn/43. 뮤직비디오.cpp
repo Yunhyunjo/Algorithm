@@ -4,19 +4,25 @@
 
 using namespace std;
 
+/*
+ 반례존재
+ ==> 최소값이 1이 아닌 가장 긴 재생시간이 다 들어갈 수 있는 길이어야함.
+*/
+
 int main() {
 
 	ios::sync_with_stdio(0);
 	cin.tie(0); cout.tie(0);
 
-	int n, m, mid, lt = 1, rt = 0, c, res;
+	int n, m, mid, rt = 0, c, res, lt = 0;
 
 	cin >> n >> m;
-	
+
 	vector <int> v(n);
 	for (int i = 0; i < n; i++) {
 		cin >> v[i];
 		rt += v[i];
+		lt = max(lt, v[i]);
 	}
 
 	while (lt <= rt) {
@@ -38,6 +44,6 @@ int main() {
 	}
 
 	cout << res;
-	
+
 	return 0;
 }
