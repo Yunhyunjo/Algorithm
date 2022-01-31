@@ -1,7 +1,11 @@
 ﻿#include <iostream>
 
 using namespace std;
-
+/*
+n = 15
+만약 연속된 두개의 합이면 n(15) - 1 - 2 = 12를 해서 12 % 2 == 0이면
+(1 + 6) + (2 + 6) = 15 이렇게 표현할 수 있다.
+*/
 int main() {
 
 	ios::sync_with_stdio(0);
