@@ -1,0 +1,51 @@
+#include <iostream>
+#include <vector>
+#include <cmath>
+
+using namespace std;
+
+int ch[12];
+vector <pair <int, int>> hos;
+vector <pair <int, int>> piz;
+int res = 2147000000;
+void dfs(int L, int s, int len, int m) {
+	if (L == m) {
+		int sum = 0;
+		for (int i = 0; i < hos.size(); i++) {
+			int min = 2147000000;
+			for (int j = 0; j < m; j++) {
+				int tmp = abs(hos[i].first - piz[ch[j]].first) + abs(hos[i].second - piz[ch[j]].second);
+				if (min > tmp) min = tmp;
+			}
+			sum += min;
+		}
+		if (sum < res) res = sum;
+		return;
+	}
+	for (int i = s; i < len; i++) {
+		ch[L] = i;
+		dfs(L + 1, i + 1, len, m);
+	}
+}
+
+int main() {
+
+	ios::sync_with_stdio(0);
+	cin.tie(0); cout.tie(0);
+
+	int n, m, a;
+	cin >> n >> m;
+
+	
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < n; j++) {
+			cin >> a;
+			if (a == 1) hos.push_back({ i, j });
+			else if (a == 2) piz.push_back({ i, j });
+		}
+	}
+	dfs(0, 0, piz.size(), m);
+	cout << res;
+
+	return 0;
+}
